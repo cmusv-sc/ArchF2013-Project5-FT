@@ -3,6 +3,11 @@ package com.example.sensebid;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -16,6 +21,9 @@ class HanaPublish extends AsyncTask<String, String, Long> {
 	final String MSG_TAG_2 = "tag_2";
 	final String MSG_TAG_3 = "tag_3";
 	final String MSG_TAG_4 = "tag_4";
+	static HttpURLConnection conn;
+	static OutputStream out;
+	static Writer writer;
 
 	@Override
 	protected Long doInBackground(String... arguments) {
@@ -30,6 +38,24 @@ class HanaPublish extends AsyncTask<String, String, Long> {
 		Log.d("check_url", urlStr);
 		// URL url;
 
+		try {
+			URL url = new URL(urlStr);
+			conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Content-Type", "application/json");
+			conn.setRequestProperty("Accept", "application/json");
+			conn.setDoOutput(true);
+
+			// Create the form content
+
+			out = conn.getOutputStream();
+
+			writer = new OutputStreamWriter(out, "UTF-8");
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 		try {
 			JsonObject jo = new JsonObject();
 			// Sample data

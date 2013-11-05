@@ -23,21 +23,8 @@ public class GetSensorReading extends MainActivity {
 
 		try {
 
-			URL url = new URL(URLStr);
-			conn = (HttpURLConnection) url.openConnection();
-			conn.setRequestMethod("POST");
-			conn.setRequestProperty("Content-Type", "application/json");
-			conn.setRequestProperty("Accept", "application/json");
-			conn.setDoOutput(true);
-
-			// Create the form content
-
-			out = conn.getOutputStream();
-
-			writer = new OutputStreamWriter(out, "UTF-8");
-			float x = event.values[0];
 			
-
+			float x = event.values[0];
 			tv.setText("X axis" + "\t\t" + x);
 			Log.d("Sensor", "I am on line");
 			HanaPublish presult = new HanaPublish();
