@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 
-public class MainActivity extends Activity {
+public class SensDroidMainActivity extends Activity {
 
 
 
@@ -13,7 +13,7 @@ public class MainActivity extends Activity {
 	public final void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		Intent i = new Intent(this, SensorActivity.class);
+		Intent i = new Intent(this, SensorDataPublisherService.class);
 		startActivity(i); 
 		
 	}

@@ -12,7 +12,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 
-public class SensorActivity extends Activity implements SensorEventListener {
+public class SensorDataPublisherService extends Activity implements SensorEventListener {
 	
     private  SensorManager mSensorManager;
     //private  Sensor mAccelerometer;

@@ -2,23 +2,22 @@ package edu.cmu.sv.sensebid;
 
 public class Configuration {
 
-	private String instance;
 	private String sensorAuth;
 	private String endPoint;
 	private String prefTemp;
 	private String publishInterval;
+	
+	private static Configuration mInstance = null;
 
-	public Configuration() {
-
-	}
-
-	public void setInstance(String newInstance) {
-		instance = newInstance;
-	}
-
-	public String getInstance() {
-		return instance;
-	}
+   protected Configuration() {
+      // Exists only to defeat instantiation.
+   }
+   public static Configuration getInstance() {
+      if(mInstance == null) {
+    	  mInstance = new Configuration();
+      }
+      return mInstance;
+   }
 
 	public void setSensorAuth(String newSensorAuth) {
 		sensorAuth = newSensorAuth;
