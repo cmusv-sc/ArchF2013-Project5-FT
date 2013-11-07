@@ -1,5 +1,6 @@
 package edu.cmu.sv.sensebid;
 
+import java.util.Hashtable;
 import java.util.List;
 
 import android.app.Activity;
@@ -16,6 +17,8 @@ public class SensorActivity extends Activity implements SensorEventListener {
     private  SensorManager mSensorManager;
     //private  Sensor mAccelerometer;
     private List<Sensor> mSensorList;
+    public Hashtable<Integer,float[]> ht;
+    public Sensor[] availableSensors;
 	
 
         
@@ -29,20 +32,38 @@ public class SensorActivity extends Activity implements SensorEventListener {
 		mSensorList = mSensorManager.getSensorList(Sensor.TYPE_ALL);
 		for(int i=1; i < mSensorList.size();i++)
 		{
-			   Log.d("SensorList", mSensorList.get(i).getName());		
+			 //  Log.d("SensorName", mSensorList.get(i).getName());
+			  // Log.d("SensorType", Integer.valueOf(mSensorList.get(i).getType()+"" ,16)+"");
 		}
      
     
-        //mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+		registerSensor(mSensorList);
     }
 	
-	 
+    // Method to register sensors
+	 public void registerSensor(List<Sensor> sensorList)
+	 {		
+		 int numberOfSensors = sensorList.size();
+		 Log.d("Number of Sensors",numberOfSensors+"");
+		 
+		 availableSensors = new Sensor[numberOfSensors];
+		 
+		 for(int i=0;i< numberOfSensors ;i++)
+		 {
+			availableSensors[i] = mSensorManager.getDefaultSensor(sensorList.get(i).getType());  
+			 
+		 }
+		 
+	 }
 		
 	
 
     protected void onResume() {
         super.onResume();
-      //  mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+       for (int i = 0; i < mSensorList.size(); i++)
+       {
+       mSensorManager.registerListener(this,availableSensors[i], SensorManager.SENSOR_DELAY_NORMAL);
+       }
     }
 
     protected void onPause() {
@@ -51,9 +72,21 @@ public class SensorActivity extends Activity implements SensorEventListener {
     }
 
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
+    	
+    }
+    
+    public String str(float f)
+    {
+    	return String.valueOf(f);
     }
 
     public void onSensorChanged(SensorEvent event) {
+    	
+
+    	Log.d(event.sensor.getName(), str(event.values[0])  + str(event.values[1]) +  str(event.values[2]) );
+
+    	
+    	
     }
 
 
