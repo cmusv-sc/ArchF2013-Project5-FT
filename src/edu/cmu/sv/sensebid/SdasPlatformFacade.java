@@ -1,69 +1,130 @@
 package edu.cmu.sv.sensebid;
-import java.io.ByteArrayOutputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Iterator;
+import java.util.List;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
-import org.apache.http.StatusLine;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
-import org.json.JSONObject;
-
-import com.google.gson.JsonArray;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class SdasPlatformFacade extends AsyncTask<String, String, String> {
-		
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
+public class SdasPlatformFacade extends AsyncTask<List<JsonObject>, Integer, Integer> {
+
+	private static final String URL= "http://einstein.sv.cmu.edu/sensors";
+
 	private String baseUrl,format;
-	
+
 	SdasPlatformFacade()
 	{
+
 	}
-	
-	public void publishData(JSONObject[] sensorReading)
-	{
-		this.postRequest(sensorReading);
-	}
-		
+
+//	public void publishData(List<JsonObject> sensorReadings)
+//	{
+//		this.postRequest(sensorReadings);
+//	}
+
 	void setFormat(String format)
 	{
 		this.format = format;
 	}
-		
+
 	void setBaseUrl(String baseUrl)
 	{
 		this.baseUrl = baseUrl;
 	}
-		
-	private void postRequest(JSONObject[] jsonArray)
-	{
-		int TIMEOUT_MILLISEC = 10000;  // = 10 seconds
-		HttpParams httpParams = new BasicHttpParams();
-		HttpConnectionParams.setConnectionTimeout(httpParams, TIMEOUT_MILLISEC);
-		HttpConnectionParams.setSoTimeout(httpParams, TIMEOUT_MILLISEC);
-		HttpClient client = new DefaultHttpClient(httpParams);
-		HttpPost request = new HttpPost("URL");
-		
-		//We need to convert JSONObject array to ByteArrayEntity
-		//request.setEntity(new ByteArrayEntity());
-		    //postMessage.toString().getBytes("UTF8")));
-		//HttpResponse response = client.execute(request);
+
+	// Thanks to Surya Kiran for this method
+	public static String httpPostSensorReading(String urlStr, JsonObject jsonObject) throws Exception {
+
+		URL url = new URL(urlStr);
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setRequestMethod("POST");
+		conn.setRequestProperty("Content-Type", "application/json");
+		conn.setRequestProperty("Accept", "application/json");
+		conn.setDoOutput(true);
+
+		OutputStream out = null;
+		Writer writer = null;
+		try {
+			out = conn.getOutputStream();
+			writer = new OutputStreamWriter(out, "UTF-8");
+
+			writer.write((new Gson()).toJson(jsonObject));
+		} finally {
+			writer.close();
+			out.close();
+		}
+
+		if (conn.getResponseCode() != 200) {
+			throw new IOException(conn.getResponseMessage());
+		}
+		StringBuilder sb;
+		BufferedReader rd = null;
+		try {
+			rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			sb = new StringBuilder();
+			String line;
+			while ((line = rd.readLine()) != null) {
+				sb.append(line);
+			}
+		} finally {
+			rd.close();
+		}
+
+		conn.disconnect();
+		return sb.toString();
 	}
 
+
+
 	@Override
-	protected String doInBackground(String... arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	protected Integer doInBackground(List<JsonObject>... req) {
+
+		Iterator<JsonObject> itr = req[0].iterator();
+		int count = 0;
+		int total = req[0].size();
+
+		while(itr.hasNext())
+		{
+			JsonObject jsonObject = itr.next();
+			try
+			{
+				System.out.println(httpPostSensorReading(URL, jsonObject));
+		//		System.out.println((new Gson()).toJson(jsonObject));
+				count++;
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();	
+			}
+		
+	
+		}
+		Log.d("Sucess", String.valueOf(count));
+		Log.d("Fail", String.valueOf(total - count));
+		return count;
+
 	}
+	
+	
+
+
 }
 
 

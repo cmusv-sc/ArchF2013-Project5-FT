@@ -15,6 +15,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -90,7 +91,7 @@ public class SensorDataPublisherService extends Activity implements
 
 			sensorDataJsons.add(sensorDataJson);
 			
-			System.out.println(">>>>> Sensor data JSON value :: " + (new Gson().toJson(sensorDataJson)));
+	//		System.out.println(">>>>> Sensor data JSON value :: " + (new Gson().toJson(sensorDataJson)));
 		}
 
 		return sensorDataJsons;
@@ -100,10 +101,7 @@ public class SensorDataPublisherService extends Activity implements
 	protected void onResume() {
 		super.onResume();
 		for (int i = 0; i < mSensorList.size(); i++) {
-
-			// mSensorManager.registerListener(this,availableSensors[i],
-			// SensorManager.SENSOR_DELAY_NORMAL);
-
+			
 			mSensorManager.registerListener(this, availableSensors[i],
 					SensorManager.SENSOR_DELAY_NORMAL);
 		}
@@ -116,6 +114,7 @@ public class SensorDataPublisherService extends Activity implements
 	}
 
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
+		//TODO: Adding a parameter for accuracy to the sensor reading being published ? 
 
 	}
 
@@ -135,10 +134,10 @@ public class SensorDataPublisherService extends Activity implements
 
 
 		try {
-			getSensorJsons();
-			Thread.sleep(500);
+			new SdasPlatformFacade().execute(getSensorJsons());
+			Thread.sleep(100);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
