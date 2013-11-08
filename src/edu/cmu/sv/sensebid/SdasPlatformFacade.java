@@ -1,4 +1,5 @@
 package edu.cmu.sv.sensebid;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -23,34 +24,14 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
-public class SdasPlatformFacade extends AsyncTask<List<JsonObject>, Integer, Integer> {
+public class SdasPlatformFacade extends
+		AsyncTask<List<JsonObject>, Integer, Integer> {
 
-	private static final String URL= "http://einstein.sv.cmu.edu/sensors";
-
-	private String baseUrl,format;
-
-	SdasPlatformFacade()
-	{
-
-	}
-
-//	public void publishData(List<JsonObject> sensorReadings)
-//	{
-//		this.postRequest(sensorReadings);
-//	}
-
-	void setFormat(String format)
-	{
-		this.format = format;
-	}
-
-	void setBaseUrl(String baseUrl)
-	{
-		this.baseUrl = baseUrl;
-	}
+	private static final String URL = "http://einstein.sv.cmu.edu/sensors";
 
 	// Thanks to Surya Kiran for this method
-	public static String httpPostSensorReading(String urlStr, JsonObject jsonObject) throws Exception {
+	public static String httpPostSensorReading(String urlStr,
+			JsonObject jsonObject) throws Exception {
 
 		URL url = new URL(urlStr);
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -77,7 +58,8 @@ public class SdasPlatformFacade extends AsyncTask<List<JsonObject>, Integer, Int
 		StringBuilder sb;
 		BufferedReader rd = null;
 		try {
-			rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			rd = new BufferedReader(
+					new InputStreamReader(conn.getInputStream()));
 			sb = new StringBuilder();
 			String line;
 			while ((line = rd.readLine()) != null) {
@@ -91,8 +73,6 @@ public class SdasPlatformFacade extends AsyncTask<List<JsonObject>, Integer, Int
 		return sb.toString();
 	}
 
-
-
 	@Override
 	protected Integer doInBackground(List<JsonObject>... req) {
 
@@ -100,31 +80,21 @@ public class SdasPlatformFacade extends AsyncTask<List<JsonObject>, Integer, Int
 		int count = 0;
 		int total = req[0].size();
 
-		while(itr.hasNext())
-		{
+		while (itr.hasNext()) {
 			JsonObject jsonObject = itr.next();
-			try
-			{
+			try {
 				System.out.println(httpPostSensorReading(URL, jsonObject));
-		//		System.out.println((new Gson()).toJson(jsonObject));
+				// TOD: Check for the response message and then update count.
 				count++;
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			catch(Exception e)
-			{
-				e.printStackTrace();	
-			}
-		
-	
+
 		}
 		Log.d("Sucess", String.valueOf(count));
 		Log.d("Fail", String.valueOf(total - count));
 		return count;
 
 	}
-	
-	
-
 
 }
-
-

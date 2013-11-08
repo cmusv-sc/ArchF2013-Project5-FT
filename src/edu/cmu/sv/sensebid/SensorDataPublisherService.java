@@ -25,19 +25,15 @@ import com.google.gson.JsonObject;
 public class SensorDataPublisherService extends Activity implements
 		SensorEventListener {
 
+	private final int interval_seconds = 5 * 1000;
 	private SensorManager mSensorManager;
-	// private Sensor mAccelerometer;
 	private List<Sensor> mSensorList;
-	public Hashtable<Integer, float[]> ht;
-	public Sensor[] availableSensors;
+	private Hashtable<Integer, float[]> ht;
+	private Sensor[] availableSensors;
 
 	HashMap<Integer, String> sensorName = Constants.sensorNameMapping;
 
-	String dev_id = "android_test";// Configuration.get_device_id();
-
-	// JsonObject sensorDataJsons[];
-
-	// Enumeration<Integer> enumeration;
+	String dev_id = "android_test";
 
 	@Override
 	public final void onCreate(Bundle savedInstanceState) {
@@ -61,7 +57,7 @@ public class SensorDataPublisherService extends Activity implements
 		for (int i = 0; i < numberOfSensors; i++) {
 			availableSensors[i] = mSensorManager.getDefaultSensor(sensorList
 					.get(i).getType());
-
+			
 		}
 	}
 
@@ -90,8 +86,6 @@ public class SensorDataPublisherService extends Activity implements
 			sensorDataJson.addProperty("timestamp", timestamp);
 
 			sensorDataJsons.add(sensorDataJson);
-			
-	//		System.out.println(">>>>> Sensor data JSON value :: " + (new Gson().toJson(sensorDataJson)));
 		}
 
 		return sensorDataJsons;
@@ -101,7 +95,7 @@ public class SensorDataPublisherService extends Activity implements
 	protected void onResume() {
 		super.onResume();
 		for (int i = 0; i < mSensorList.size(); i++) {
-			
+
 			mSensorManager.registerListener(this, availableSensors[i],
 					SensorManager.SENSOR_DELAY_NORMAL);
 		}
@@ -114,8 +108,8 @@ public class SensorDataPublisherService extends Activity implements
 	}
 
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
-		//TODO: Adding a parameter for accuracy to the sensor reading being published ? 
-
+		// TODO: Adding a parameter for accuracy to the sensor reading being
+		// published ?
 	}
 
 	public String str(Object f) {
@@ -130,14 +124,13 @@ public class SensorDataPublisherService extends Activity implements
 	public void onSensorChanged(SensorEvent event) {
 
 		ht.put(event.sensor.getType(), event.values);
-		// Log.d("Json Object",this.convertToJson().toString());
 
-
+		// TODO: Fix this logic
 		try {
 			new SdasPlatformFacade().execute(getSensorJsons());
-			Thread.sleep(100);
+			Thread.sleep(interval_seconds);
 		} catch (InterruptedException e) {
-			
+
 			e.printStackTrace();
 		}
 	}
