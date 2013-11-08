@@ -6,6 +6,12 @@ public class Configuration {
 	private String endPoint;
 	private String prefTemp;
 	private String publishInterval;
+	private final static String device_id = "android_test";
+	
+	public static String get_device_id()
+	{
+		return device_id;
+	}
 	
 	private static Configuration mInstance = null;
 
