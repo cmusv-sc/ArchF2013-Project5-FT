@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class SensDroidMainActivity extends Activity {
+public class SenseDroidMainActivity extends Activity {
 
 	int coins;
 	Button buttonBid, buttonTime;
