@@ -4,5 +4,13 @@
     <string name="app_name">SenseBid</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+	<string name="Bid_Temp">Temp!</string>
+	<string name="pick_time">Pick Time</string>
+	<string name="room">Room</string>
+	<string name="day">Date</string>
+	<string name="month">Month</string>
+	<string name="hours">Hours</string>
+	<string name="minutes">Hours</string>
+	<string name="coins">Coins</string>
 
 </resources>

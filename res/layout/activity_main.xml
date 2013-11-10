@@ -1,46 +1,159 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relative"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/relative">
- 
-   <TextView
-    android:textSize="30dp"
-    android:id="@+id/name"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    />
- 
-   <TextView
-    android:textSize="20dp"
-    android:layout_below="@+id/name"
-    android:id="@+id/xval"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    />
-     
+    android:layout_height="match_parent" >
+
+    <!-- Displaying Rooms -->
+
     <TextView
-    android:textSize="20dp"
-    android:id="@+id/yval"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/xval"
-    />
-     
+        android:id="@+id/tvRooms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rooms: "
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/etRooms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="3dp"
+        android:layout_toRightOf="@+id/tvRooms"
+        android:hint="@string/room"
+        android:inputType="text"
+        android:maxLength="5"
+        android:textSize="20dp" />
+
+    <!-- Displaying Date -->
+
     <TextView
-    android:textSize="20dp"
-    android:id="@+id/zval"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/yval"
-    />
-    
-        <TextView
-    android:textSize="20dp"
-    android:id="@+id/testval"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/zval"
-    />
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etRooms"
+        android:text="Date: "
+        android:textSize="20dp" />
+ 
+<!-- Day -->
+    <EditText
+        android:id="@+id/etDay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etRooms"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="3dp"
+        android:layout_toRightOf="@+id/tvDate"
+        android:hint="@string/day"
+        android:inputType="number"
+        android:maxLength="2"
+        android:textSize="20dp" />
+ <!-- Month -->
+    <EditText
+        android:id="@+id/etMonth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etRooms"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="3dp"
+        android:layout_toRightOf="@+id/etDay"
+        android:hint="@string/month"
+        android:inputType="number"
+        android:maxLength="2"
+        android:textSize="20dp" />
+     
    
+
+    <!-- Displaying Time -->
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDate"
+        android:text="Time: "
+        android:textSize="20dp" />
+<!-- Hours -->
+    <EditText
+        android:id="@+id/etHours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="3dp"
+        android:layout_toRightOf="@+id/tvTime"
+        android:layout_below="@+id/tvDate"
+        android:hint="@string/hours"
+        android:inputType="number"
+        android:maxLength="2"
+        android:textSize="20dp" />
+ <!-- Minutes -->
+   <EditText
+        android:id="@+id/etMinutes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="3dp"
+        android:layout_toRightOf="@+id/etHours"
+        android:layout_below="@+id/tvDate"
+        android:hint="@string/minutes"
+        android:inputType="number"
+        android:maxLength="2"
+        android:textSize="20dp" />
+    <!-- Displaying Temperature -->
+    
+    <TextView
+        android:id="@+id/tvTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Temperature: "
+        android:textSize="20dp"
+        android:layout_below="@+id/tvTime" />
+
+    <EditText
+        android:id="@+id/etTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="3dp"
+        android:layout_toRightOf="@+id/tvTemp"
+        android:layout_below="@+id/tvTime"
+        android:hint="@string/Bid_Temp"
+        android:inputType="number"
+        android:maxLength="2"
+        android:textSize="20dp" />
+    -->
+
+
+    <!-- Displaying number of coins -->
+
+    <TextView
+        android:id="@+id/tvCoins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTemp"
+        android:text="Whats at stake? "
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/etCoins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_below="@+id/tvTemp"
+        android:layout_marginLeft="3dp"
+        android:layout_toRightOf="@+id/tvCoins"
+        android:hint="@string/coins"
+        android:inputType="number"
+        android:maxLength="3"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/buttonBid"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tvCoins"
+        android:layout_marginTop="22dp"
+        android:text="Bid" />
+
 </RelativeLayout>
