@@ -23,7 +23,8 @@
         android:hint="@string/room"
         android:inputType="text"
         android:maxLength="5"
-        android:textSize="20dp" />
+        android:textSize="20dp" 
+        />
 
     <!-- Displaying Date -->
 

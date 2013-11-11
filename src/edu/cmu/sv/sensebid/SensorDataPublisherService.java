@@ -43,7 +43,7 @@ public class SensorDataPublisherService extends Activity implements
 		mSensorList = mSensorManager.getSensorList(Sensor.TYPE_ALL);
 
 		ht = new Hashtable<Integer, float[]>();
-
+		
 		registerSensor(mSensorList);
 	}
 
@@ -57,7 +57,7 @@ public class SensorDataPublisherService extends Activity implements
 		for (int i = 0; i < numberOfSensors; i++) {
 			availableSensors[i] = mSensorManager.getDefaultSensor(sensorList
 					.get(i).getType());
-			
+			Log.d("Test", "I am here");
 		}
 	}
 
