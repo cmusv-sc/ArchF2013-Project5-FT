@@ -82,9 +82,10 @@ public class SdasPlatformFacade extends
 
 		while (itr.hasNext()) {
 			JsonObject jsonObject = itr.next();
+			
 			try {
-				System.out.println(httpPostSensorReading(URL, jsonObject));
-				// TOD: Check for the response message and then update count.
+				System.out.println("RESPONSE: \n " + httpPostSensorReading(URL, jsonObject));
+				// TODO: Check for the response message and then update count.
 				count++;
 			} catch (Exception e) {
 				e.printStackTrace();

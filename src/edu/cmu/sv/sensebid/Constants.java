@@ -24,8 +24,16 @@ public final class Constants {
 		sensorNameMapping.put(Sensor.TYPE_MAGNETIC_FIELD_UNCALIBRATED,
 				"Magenetic Field");
 		sensorNameMapping.put(Sensor.TYPE_PROXIMITY, "Proximity");
+		sensorNameMapping.put(Sensor.TYPE_PRESSURE, "Pressure");
 		sensorNameMapping.put(Sensor.TYPE_RELATIVE_HUMIDITY, "Humidity");
 		sensorNameMapping.put(Sensor.TYPE_ROTATION_VECTOR, "Rotation Vector");
+		sensorNameMapping.put(Sensor.TYPE_GAME_ROTATION_VECTOR, "Game Rotation Vector");
+		// Deprecated from API LEVEL 8. 
+		// The way to do this is to provide a configuration page to configure
+		// what sensor values need to be sent
+		
+		sensorNameMapping.put(Sensor.TYPE_ORIENTATION, "Orientation Vector");
+		
 
 	}
 
