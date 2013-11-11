@@ -50,7 +50,8 @@ public class BidForTemperatureActivity extends Activity {
 				// TODO Auto-generated method stub
 				
 				JsonObject bidData = new JsonObject();
-
+				JsonObject bidDataBody = new JsonObject();
+				
 				bidData.addProperty("room", room.getText().toString());
 				bidData.addProperty("day", day_1.getText().toString());
 				bidData.addProperty("month", month_1.getText().toString());
@@ -58,10 +59,11 @@ public class BidForTemperatureActivity extends Activity {
 				bidData.addProperty("minutes", min_1.getText().toString());
 				bidData.addProperty("temp", temp_1.getText().toString());
 				bidData.addProperty("coins", coins_1.getText().toString());
+				bidDataBody.addProperty("bidtemperature", bidData.toString());
 				
-				Log.d("Test", bidData.toString());
+				Log.d("Test", bidDataBody.toString());
 				
-				new BidTemperatureController().execute(bidData.toString());
+				new BidTemperatureController().execute(bidDataBody.toString());
 
 			}
 		});
