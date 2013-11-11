@@ -59,7 +59,7 @@ public class BidForTemperatureActivity extends Activity {
 				bidData.addProperty("minutes", min_1.getText().toString());
 				bidData.addProperty("temp", temp_1.getText().toString());
 				bidData.addProperty("coins", coins_1.getText().toString());
-				bidDataBody.addProperty("bidtemperature", bidData.toString());
+				bidDataBody.add("bidtemperature", bidData);
 				
 				Log.d("Test", bidDataBody.toString());
 				
