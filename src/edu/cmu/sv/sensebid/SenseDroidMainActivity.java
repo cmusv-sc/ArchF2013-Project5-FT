@@ -1,5 +1,8 @@
 package edu.cmu.sv.sensebid;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +14,11 @@ public class SenseDroidMainActivity extends Activity {
 	public final void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		//Authenticate user
+		
+		CalendarProvider calendarProvider = new CalendarProvider();
+		ArrayList<Reservation> events = calendarProvider.readCalendarEvents(this);
+	
 		Intent i = new Intent(this, SensorDataPublisherService.class);
 		startActivity(i);
 
