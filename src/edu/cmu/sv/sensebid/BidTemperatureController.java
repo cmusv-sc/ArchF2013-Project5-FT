@@ -20,7 +20,8 @@ import com.google.gson.JsonObject;
 public class BidTemperatureController extends
 		AsyncTask<String, String, String> {
 
-	private static final String URL = "http://192.168.0.3:8080/sensor";
+	private static final String URL = "http://10.0.23.27:8080/sensor";
+	//private static final String URL = "http://10.0.22.99:8080/sensor";
 
 
 	protected String doInBackground(String... arguments)  {
