@@ -8,6 +8,8 @@ public class Reservation {
 	private Date endDate;
 	private String location;
 	
+	public Reservation(){}
+	
 	public Reservation(String pDescription, Date pStartDate, Date pEndDate, String pLocation){
 		setDescription(pDescription);
 		setStartDate(pStartDate);
@@ -19,7 +21,7 @@ public class Reservation {
 		return description;
 	}
 
-	private void setDescription(String description) {
+	public void setDescription(String description) {
 		this.description = description;
 	}
 
@@ -27,7 +29,7 @@ public class Reservation {
 		return startDate;
 	}
 
-	private void setStartDate(Date startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
@@ -35,7 +37,7 @@ public class Reservation {
 		return endDate;
 	}
 
-	private void setEndDate(Date endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
@@ -43,7 +45,7 @@ public class Reservation {
 		return location;
 	}
 
-	private void setLocation(String location) {
+	public void setLocation(String location) {
 		this.location = location;
 	}
 	

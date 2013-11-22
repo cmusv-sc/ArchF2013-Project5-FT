@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -23,30 +24,22 @@ public class CalendarProvider {
 		Uri CALENDAR_URI = Uri.parse(uri);
 		
 		ArrayList<Reservation> reservationsList = new ArrayList<Reservation>();
-		
-		// Get today date. Pending to add tomorrow
-		Date today = new Date();
-        String todayDate = new SimpleDateFormat("yyyyMMdd").format(today);
-        
         
 	    Cursor cursor = context.getContentResolver().query(CALENDAR_URI, new String[] { "calendar_id", "title", "description",
 	                            "dtstart", "dtend", "eventLocation" }, null, null, null);
 	    cursor.moveToFirst();
-	    
-	    
-	    
-	    //String[] CalNames = new String[cursor.getCount()];
-        //int[] CalIds = new int[cursor.getCount()];
-        //for (int i = 0; i < CalNames.length; i++) {
+
 	    Reservation reservation;
 	    for (int i = 0; i < cursor.getCount(); i++) {
 	    	
-            Date mDate = new Date(cursor.getLong(3));
-            String appDate = new SimpleDateFormat("yyyyMMdd").format(mDate);
-//            long mTime = mDate.getTime();
-//            long lTime = nDate.getTime();
+            Date eventDate = new Date(cursor.getLong(3));
+            String appDate = new SimpleDateFormat("yyyyMMdd").format(eventDate);
             
-            if(appDate.equals(todayDate) ) { 
+            Calendar eventCalendar = Calendar.getInstance();
+            eventCalendar.setTime(eventDate);
+            
+            //if(appDate.equals(todayDate) || appDate.equals(tomorrowDate)) {
+            if(isTodayEventAndHalfAnHourLaterThanNow(eventCalendar) == true || isTomorrowEvent(eventCalendar) == true) {
             	reservation = new Reservation();
                 reservation.setDescription(cursor.getString(1));
                 
@@ -57,16 +50,59 @@ public class CalendarProvider {
                 reservationsList.add(reservation);
             }
             cursor.moveToNext();
-        }
-        
+	}
         return reservationsList;
 	}
 
-	public static String getDate(long milliSeconds) {
-	    SimpleDateFormat formatter = new SimpleDateFormat(
-	            "dd/MM/yyyy hh:mm:ss a");
-	    Calendar calendar = Calendar.getInstance();
-	    calendar.setTimeInMillis(milliSeconds);
-	    return formatter.format(calendar.getTime());
+	private static boolean isTodayEventAndHalfAnHourLaterThanNow(Calendar eventCalendar){
+		// Get today date. 
+		Calendar todayCalendar = Calendar.getInstance();
+		Date today = todayCalendar.getTime();
+		Date event = eventCalendar.getTime();
+		
+		if(today.getTime() > event.getTime())
+		{
+			return false;
+		}
+		else
+		{
+			long minutesBetweenEvents = (int) (((event.getTime() - today.getTime()) / 1000) / 60);
+			
+			//Adding 30 minutes to event so user is able to bid for temperature
+			eventCalendar.add(Calendar.MINUTE, 30);
+			
+			
+			if(eventCalendar.get(Calendar.YEAR) == todayCalendar.get(Calendar.YEAR) && 
+					eventCalendar.get(Calendar.MONTH) == todayCalendar.get(Calendar.MONTH) &&
+					eventCalendar.get(Calendar.DAY_OF_MONTH) == todayCalendar.get(Calendar.DAY_OF_MONTH) &&
+					minutesBetweenEvents >= 30){
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+	}
+	
+	private static boolean isTomorrowEvent(Calendar eventCalendar){
+		// Get today date. 
+		Calendar todayCalendar = Calendar.getInstance();
+		Date today = todayCalendar.getTime();
+        
+        //Get tomorrow
+		Calendar tomorrowCalendar = Calendar.getInstance();
+		tomorrowCalendar.setTime(today);  
+		tomorrowCalendar.add(Calendar.DAY_OF_YEAR, 1);  
+		
+		if(eventCalendar.get(Calendar.YEAR) == tomorrowCalendar.get(Calendar.YEAR) && 
+				eventCalendar.get(Calendar.MONTH) == tomorrowCalendar.get(Calendar.MONTH) &&
+				eventCalendar.get(Calendar.DAY_OF_MONTH) == tomorrowCalendar.get(Calendar.DAY_OF_MONTH)){
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 }
