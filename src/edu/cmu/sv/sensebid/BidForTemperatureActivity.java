@@ -22,8 +22,12 @@ public class BidForTemperatureActivity extends Activity {
 	public final void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
-		Log.d("Test", "I am here");
+		
+		//How to get values from intent call
+		/*Bundle b = getIntent().getExtras();
+		
+		ShowCalendar obj = b.getParcelable("com.package.ShowCalendar"); */
+		//Log.d("test_2", obj.toString());
 
 		//
 
