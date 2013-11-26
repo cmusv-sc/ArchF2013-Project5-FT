@@ -14,7 +14,7 @@ import android.util.Log;
 public class BidTemperatureController extends
 		AsyncTask<String, String, String> {
 
-	private static final String URL = "http://10.0.10.111:8080/sensor";
+	private static final String URL = "http://10.0.22.99:8080/sensor";
 	//private static final String URL = "http://10.0.22.99:8080/sensor";
 
 

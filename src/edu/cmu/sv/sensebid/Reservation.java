@@ -1,11 +1,12 @@
 package edu.cmu.sv.sensebid;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Reservation implements Parcelable{
+public class Reservation implements Serializable{
 	private String description;
 	private Date startDate;
 	private Date endDate;
@@ -56,22 +57,19 @@ public class Reservation implements Parcelable{
 
 	@Override
 	public String toString() {
-		return ("Description:" + "\n" + this.getDescription() + "\n"
-				+ "Start Date:" + "\n" + this.getStartDate() + "\n"
-				+ "End Date:" + "\n" + this.getEndDate() + "\n"
-				+ "Location :" + "\n" + this.getLocation());
+		return ("Description:" + "\n" + this.getDescription() + ".\n"
+				+ "Start Date:" + "\n" + this.getStartDate() + ".\n"
+				+ "End Date:" + "\n" + this.getEndDate() + ".\n"
+				+ "Location:" + "\n" + this.getLocation() + ".\n");
 	}
 
-	@Override
-	public int describeContents() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
-	@Override
-	public void writeToParcel(Parcel dest, int flags) {
-		// TODO Auto-generated method stub
-		
-	}
+	
+	/*public static final Parcelable.Creator CREATOR = new Parcelable.Creator() 
+	{ public Reservation createFromParcel(Parcel in) 
+	{ return new Reservation(); }  
+	public Reservation[] newArray(int size) { return new Reservation[size]; 
+	} 
+	}; */
 
 }
