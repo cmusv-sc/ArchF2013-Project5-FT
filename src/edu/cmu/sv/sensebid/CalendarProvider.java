@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import com.google.gdata.client.calendar.CalendarQuery;
@@ -57,6 +59,15 @@ public class CalendarProvider {
             reservation.setLocation(partialEvent.getLocations().get(0).getValueString());
             events.add(reservation);
 		}
+		
+		Collections.sort(events, new Comparator<Reservation>() {
+			  public int compare(Reservation o1, Reservation o2) {
+			      if (o1.getStartDate() == null || o2.getStartDate() == null)
+			        return 0;
+			      return o1.getStartDate().compareTo(o2.getStartDate());
+			  }
+			});
+		
 		return events;
 	}
 }
