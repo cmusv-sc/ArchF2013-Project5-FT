@@ -1,108 +1,75 @@
 package edu.cmu.sv.sensebid;
 
 import java.util.Date;
+import java.io.IOException;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import com.google.gdata.client.calendar.CalendarQuery;
+import com.google.gdata.client.calendar.CalendarService;
+import com.google.gdata.data.DateTime;
+import com.google.gdata.data.calendar.CalendarEventEntry;
+import com.google.gdata.data.calendar.CalendarEventFeed;
+import com.google.gdata.data.extensions.When;
+import com.google.gdata.util.ServiceException;
+
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.CalendarContract;
+import android.provider.CalendarContract.Instances;
+import android.text.format.DateUtils;
 
 public class CalendarProvider {
-	public static ArrayList<String> nameOfEvent = new ArrayList<String>();
-	public static ArrayList<String> startDates = new ArrayList<String>();
-	public static ArrayList<String> endDates = new ArrayList<String>();
-	public static ArrayList<String> descriptions = new ArrayList<String>();
-
-	public static ArrayList<Reservation> readCalendarEvents(Context context) {
-		String uri = "content://com.android.calendar/events"; // Check for updated APIs
-		Uri CALENDAR_URI = Uri.parse(uri);
+	public ArrayList<Reservation> readCalendarEvents(String userName, String password) throws IOException, ServiceException
+	{
+		ArrayList<Reservation> events = new ArrayList<Reservation>();
 		
-		ArrayList<Reservation> reservationsList = new ArrayList<Reservation>();
-        
-	    Cursor cursor = context.getContentResolver().query(CALENDAR_URI, new String[] { "calendar_id", "title", "description",
-	                            "dtstart", "dtend", "eventLocation" }, null, null, null);
-	    cursor.moveToFirst();
+		URL feedUrl = new URL("https://www.google.com/calendar/feeds/default/private/full");
 
-	    Reservation reservation;
-	    for (int i = 0; i < cursor.getCount(); i++) {
-	    	
-            Date eventDate = new Date(cursor.getLong(3));
-            String appDate = new SimpleDateFormat("yyyyMMdd").format(eventDate);
-            
-            Calendar eventCalendar = Calendar.getInstance();
-            eventCalendar.setTime(eventDate);
-            
-            //if(appDate.equals(todayDate) || appDate.equals(tomorrowDate)) {
-            if(isTodayEventAndHalfAnHourLaterThanNow(eventCalendar) == true || isTomorrowEvent(eventCalendar) == true) {
-            	reservation = new Reservation();
-                reservation.setDescription(cursor.getString(1));
-                
-                //Does this work with recurring apps?
-                reservation.setStartDate(new Date(cursor.getLong(3)));
-                reservation.setEndDate(new Date(cursor.getLong(4)));
-                reservation.setLocation(cursor.getString(5));
-                reservationsList.add(reservation);
-            }
-            cursor.moveToNext();
-	}
-        return reservationsList;
-	}
-
-	private static boolean isTodayEventAndHalfAnHourLaterThanNow(Calendar eventCalendar){
-		// Get today date. 
-		Calendar todayCalendar = Calendar.getInstance();
-		Date today = todayCalendar.getTime();
-		Date event = eventCalendar.getTime();
+		CalendarQuery myQuery = new CalendarQuery(feedUrl);
 		
-		if(today.getTime() > event.getTime())
-		{
-			return false;
-		}
-		else
-		{
-			long minutesBetweenEvents = (int) (((event.getTime() - today.getTime()) / 1000) / 60);
-			
-			//Adding 30 minutes to event so user is able to bid for temperature
-			eventCalendar.add(Calendar.MINUTE, 30);
-			
-			
-			if(eventCalendar.get(Calendar.YEAR) == todayCalendar.get(Calendar.YEAR) && 
-					eventCalendar.get(Calendar.MONTH) == todayCalendar.get(Calendar.MONTH) &&
-					eventCalendar.get(Calendar.DAY_OF_MONTH) == todayCalendar.get(Calendar.DAY_OF_MONTH) &&
-					minutesBetweenEvents >= 30){
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-	}
-	
-	private static boolean isTomorrowEvent(Calendar eventCalendar){
-		// Get today date. 
-		Calendar todayCalendar = Calendar.getInstance();
-		Date today = todayCalendar.getTime();
-        
-        //Get tomorrow
 		Calendar tomorrowCalendar = Calendar.getInstance();
+		tomorrowCalendar.add(Calendar.MINUTE, 30);
+		Date today = tomorrowCalendar.getTime();
+		
 		tomorrowCalendar.setTime(today);  
 		tomorrowCalendar.add(Calendar.DAY_OF_YEAR, 1);  
 		
-		if(eventCalendar.get(Calendar.YEAR) == tomorrowCalendar.get(Calendar.YEAR) && 
-				eventCalendar.get(Calendar.MONTH) == tomorrowCalendar.get(Calendar.MONTH) &&
-				eventCalendar.get(Calendar.DAY_OF_MONTH) == tomorrowCalendar.get(Calendar.DAY_OF_MONTH)){
-			return true;
+		tomorrowCalendar.set(Calendar.HOUR_OF_DAY, 23);
+		tomorrowCalendar.set(Calendar.MINUTE, 59);
+		tomorrowCalendar.set(Calendar.SECOND, 59);
+		Date tomorrow = tomorrowCalendar.getTime();
+		
+		myQuery.setMinimumStartTime(new DateTime(today));
+		myQuery.setMaximumStartTime(new DateTime(tomorrow));
+
+		CalendarService myService = new CalendarService("exampleCo-exampleApp-1");
+		myService.setUserCredentials(userName, password);
+
+		// Send the request and receive the response:
+		CalendarEventFeed resultFeed = myService.query(myQuery, CalendarEventFeed.class);
+		Reservation reservation = null;
+		for (CalendarEventEntry partialEvent : resultFeed.getEntries()) {
+			reservation = new Reservation();
+            reservation.setDescription(partialEvent.getTitle().getPlainText());
+            
+            List<When> times = partialEvent.getTimes();
+            reservation.setStartDate(new Date(times.get(0).getStartTime().getValue()));
+            reservation.setEndDate(new Date(times.get(0).getEndTime().getValue()));
+            reservation.setLocation(partialEvent.getLocations().get(0).getValueString());
+            events.add(reservation);
 		}
-		else
-		{
-			return false;
-		}
+		return events;
 	}
 }
