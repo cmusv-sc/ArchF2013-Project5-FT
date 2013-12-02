@@ -1,8 +1,11 @@
 package edu.cmu.sv.sensebid;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+
+import com.google.gdata.util.ServiceException;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -23,9 +26,9 @@ public class ShowCalendar extends Activity {
 		setContentView(R.layout.activity_main_screen);
 
 		CalendarProvider calendarProvider = new CalendarProvider();
-
+		try {
 		final ArrayList<Reservation> reservationsList = calendarProvider
-				.readCalendarEvents("", "");
+					.readCalendarEvents("", "");
 
 		final CalArrayAdapter adapter = new CalArrayAdapter(this,
 				android.R.layout.simple_list_item_1, reservationsList);
@@ -72,6 +75,13 @@ public class ShowCalendar extends Activity {
 				startActivity(intent);
 			}
 		});
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 	/*
