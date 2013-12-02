@@ -11,13 +11,6 @@ import java.net.URL;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
-
 import android.os.AsyncTask;
 import android.util.Log;
 

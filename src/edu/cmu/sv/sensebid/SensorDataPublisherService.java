@@ -2,24 +2,19 @@ package edu.cmu.sv.sensebid;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
-
 import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 public class SensorDataPublisherService extends Activity implements
@@ -92,6 +87,7 @@ public class SensorDataPublisherService extends Activity implements
 
 	}
 
+	@Override
 	protected void onResume() {
 		super.onResume();
 		for (int i = 0; i < mSensorList.size(); i++) {
@@ -102,11 +98,13 @@ public class SensorDataPublisherService extends Activity implements
 
 	}
 
+	@Override
 	protected void onPause() {
 		super.onPause();
 		mSensorManager.unregisterListener(this);
 	}
 
+	@Override
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
 		// TODO: Adding a parameter for accuracy to the sensor reading being
 		// published ?
@@ -121,6 +119,7 @@ public class SensorDataPublisherService extends Activity implements
 
 	}
 
+	@Override
 	public void onSensorChanged(SensorEvent event) {
 
 		ht.put(event.sensor.getType(), event.values);

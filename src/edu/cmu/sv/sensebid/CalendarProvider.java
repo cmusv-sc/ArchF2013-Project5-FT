@@ -1,14 +1,12 @@
 package edu.cmu.sv.sensebid;
 
+
 import java.util.Date;
 import java.io.IOException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashSet;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import com.google.gdata.client.calendar.CalendarQuery;
 import com.google.gdata.client.calendar.CalendarService;
@@ -18,17 +16,6 @@ import com.google.gdata.data.calendar.CalendarEventFeed;
 import com.google.gdata.data.extensions.When;
 import com.google.gdata.util.ServiceException;
 
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
-import android.content.ContentResolver;
-import android.content.ContentUris;
-import android.content.Context;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.Build;
-import android.provider.CalendarContract;
-import android.provider.CalendarContract.Instances;
-import android.text.format.DateUtils;
 
 public class CalendarProvider {
 	public ArrayList<Reservation> readCalendarEvents(String userName, String password) throws IOException, ServiceException

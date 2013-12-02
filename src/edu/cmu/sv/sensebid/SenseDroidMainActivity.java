@@ -5,11 +5,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import com.google.gdata.util.ServiceException;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 public class SenseDroidMainActivity extends Activity {
 
@@ -17,7 +15,6 @@ public class SenseDroidMainActivity extends Activity {
 	public final void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
 		
 		CalendarProvider calendarProvider = new CalendarProvider();
 		ArrayList<Reservation> events = new ArrayList<Reservation>();
@@ -33,14 +30,17 @@ public class SenseDroidMainActivity extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println(events.toString());
-		
 		
 		Intent i = new Intent(this, SensorDataPublisherService.class);
 		startActivity(i);
-
-		Intent j = new Intent(this, BidForTemperatureActivity.class);
-		startActivity(j);
+		
+		Intent k = new Intent(this, ShowCalendar.class);
+		startActivity(k);
+		
+		
+		
+		
+		
 	}
 
 }

@@ -8,22 +8,17 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.Iterator;
-import java.util.List;
-
 import android.os.AsyncTask;
 import android.util.Log;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
 public class BidTemperatureController extends
 		AsyncTask<String, String, String> {
 
-	private static final String URL = "http://10.0.10.111:8080/sensor";
+	private static final String URL = "http://10.0.22.99:8080/sensor";
 	//private static final String URL = "http://10.0.22.99:8080/sensor";
 
 
+	@Override
 	protected String doInBackground(String... arguments)  {
 
 		String urlStr = URL;
