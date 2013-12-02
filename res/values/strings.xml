@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">SenseBid</string>
+    <string name="app_name">smartSense</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
 	<string name="Bid_Temp">Temp!</string>
@@ -12,5 +12,6 @@
 	<string name="hours">Hours</string>
 	<string name="minutes">Hours</string>
 	<string name="coins">Coins</string>
-
+	<string name="winning">Winning Temperature</string>
+	<string name="temp">Temperature</string>
 </resources>
