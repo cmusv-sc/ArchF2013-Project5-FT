@@ -16,23 +16,23 @@ public class SenseDroidMainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		CalendarProvider calendarProvider = new CalendarProvider();
-		ArrayList<Reservation> events = new ArrayList<Reservation>();
-		try {
-			// Get from UI
-			String userName = "";
-			String password = "";
-			events = calendarProvider.readCalendarEvents(userName, password);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		CalendarProvider calendarProvider = new CalendarProvider();
+//		ArrayList<Reservation> events = new ArrayList<Reservation>();
+//		try {
+//			// Get from UI
+//			String userName = "";
+//			String password = "";
+//			events = calendarProvider.readCalendarEvents(userName, password);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (ServiceException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
-		Intent i = new Intent(this, SensorDataPublisherService.class);
-		startActivity(i);
+//		Intent i = new Intent(this, SensorDataPublisherService.class);
+//		startActivity(i);
 		
 		Intent k = new Intent(this, ShowCalendar.class);
 		startActivity(k);

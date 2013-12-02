@@ -10,6 +10,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import android.os.AsyncTask;
+
 import com.google.gdata.client.calendar.CalendarQuery;
 import com.google.gdata.client.calendar.CalendarService;
 import com.google.gdata.data.DateTime;
@@ -17,10 +19,22 @@ import com.google.gdata.data.calendar.CalendarEventEntry;
 import com.google.gdata.data.calendar.CalendarEventFeed;
 import com.google.gdata.data.extensions.When;
 import com.google.gdata.util.ServiceException;
+import com.google.gson.JsonObject;
 
 
-public class CalendarProvider {
-	public ArrayList<Reservation> readCalendarEvents(String userName, String password) throws IOException, ServiceException
+
+public class CalendarProvider extends AsyncTask<String, Void, ArrayList<Reservation>>{
+	private AsyncTaskCompleteListener<ArrayList<Reservation>> mTaskCompletedCallback;
+	private String user = "";
+	private String pwd = "";
+	
+	public CalendarProvider(AsyncTaskCompleteListener<ArrayList<Reservation>> listener, String usr, String pwd){
+		this.mTaskCompletedCallback = listener;
+		this.user = usr;
+		this.pwd = pwd;
+	}
+	
+	public ArrayList<Reservation> readCalendarEvents() throws IOException, ServiceException
 	{
 		ArrayList<Reservation> events = new ArrayList<Reservation>();
 		
@@ -44,7 +58,7 @@ public class CalendarProvider {
 		myQuery.setMaximumStartTime(new DateTime(tomorrow));
 
 		CalendarService myService = new CalendarService("exampleCo-exampleApp-1");
-		myService.setUserCredentials(userName, password);
+		myService.setUserCredentials(this.user, this.pwd);
 
 		// Send the request and receive the response:
 		CalendarEventFeed resultFeed = myService.query(myQuery, CalendarEventFeed.class);
@@ -69,5 +83,26 @@ public class CalendarProvider {
 			});
 		
 		return events;
+	}
+
+	@Override
+	protected ArrayList<Reservation> doInBackground(String... params) {
+		ArrayList<Reservation> events = new ArrayList<Reservation>();
+		try {
+			events = readCalendarEvents();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return events;
+	}
+	
+	@Override
+	protected void onPostExecute(ArrayList<Reservation> events){
+		super.onPostExecute(events);
+		this.mTaskCompletedCallback.onTaskCompleted(events);
 	}
 }

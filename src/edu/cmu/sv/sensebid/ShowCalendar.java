@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-public class ShowCalendar extends Activity {
+public class ShowCalendar extends Activity implements AsyncTaskCompleteListener<ArrayList<Reservation>>{
 
 	String location;
 
@@ -25,10 +25,19 @@ public class ShowCalendar extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main_screen);
 
-		CalendarProvider calendarProvider = new CalendarProvider();
-		try {
-		final ArrayList<Reservation> reservationsList = calendarProvider
-					.readCalendarEvents("", "");
+		new CalendarProvider(this, "", "").execute();
+	}
+		
+	/*
+	 * public void setLocation(String location){ //Log.d("test_2", location);
+	 * this.location = location; } public String getLocation() { Log.d("test_2",
+	 * location); return location; }
+	 */
+
+	@Override
+	public void onTaskCompleted(ArrayList<Reservation> result) {
+			
+		final ArrayList<Reservation> reservationsList = result;
 
 		final CalArrayAdapter adapter = new CalArrayAdapter(this,
 				android.R.layout.simple_list_item_1, reservationsList);
@@ -75,19 +84,6 @@ public class ShowCalendar extends Activity {
 				startActivity(intent);
 			}
 		});
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 	}
-	/*
-	 * public void setLocation(String location){ //Log.d("test_2", location);
-	 * this.location = location; } public String getLocation() { Log.d("test_2",
-	 * location); return location; }
-	 */
 
 }
