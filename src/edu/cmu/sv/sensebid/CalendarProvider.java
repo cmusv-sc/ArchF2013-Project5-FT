@@ -27,11 +27,17 @@ public class CalendarProvider extends AsyncTask<String, Void, ArrayList<Reservat
 	private AsyncTaskCompleteListener<ArrayList<Reservation>> mTaskCompletedCallback;
 	private String user = "";
 	private String pwd = "";
+	private Calendar calendar;
 	
 	public CalendarProvider(AsyncTaskCompleteListener<ArrayList<Reservation>> listener, String usr, String pwd){
 		this.mTaskCompletedCallback = listener;
 		this.user = usr;
 		this.pwd = pwd;
+		this.calendar = Calendar.getInstance();
+	}
+	
+	public void setCalendar (Calendar c){
+		this.calendar = c;
 	}
 	
 	public ArrayList<Reservation> readCalendarEvents() throws IOException, ServiceException
@@ -42,17 +48,17 @@ public class CalendarProvider extends AsyncTask<String, Void, ArrayList<Reservat
 
 		CalendarQuery myQuery = new CalendarQuery(feedUrl);
 		
-		Calendar tomorrowCalendar = Calendar.getInstance();
-		tomorrowCalendar.add(Calendar.MINUTE, 30);
-		Date today = tomorrowCalendar.getTime();
+		calendar = Calendar.getInstance();
+		calendar.add(Calendar.MINUTE, 30);
+		Date today = calendar.getTime();
 		
-		tomorrowCalendar.setTime(today);  
-		tomorrowCalendar.add(Calendar.DAY_OF_YEAR, 1);  
+		calendar.setTime(today);  
+		calendar.add(Calendar.DAY_OF_YEAR, 1);  
 		
-		tomorrowCalendar.set(Calendar.HOUR_OF_DAY, 23);
-		tomorrowCalendar.set(Calendar.MINUTE, 59);
-		tomorrowCalendar.set(Calendar.SECOND, 59);
-		Date tomorrow = tomorrowCalendar.getTime();
+		calendar.set(Calendar.HOUR_OF_DAY, 23);
+		calendar.set(Calendar.MINUTE, 59);
+		calendar.set(Calendar.SECOND, 59);
+		Date tomorrow = calendar.getTime();
 		
 		myQuery.setMinimumStartTime(new DateTime(today));
 		myQuery.setMaximumStartTime(new DateTime(tomorrow));
