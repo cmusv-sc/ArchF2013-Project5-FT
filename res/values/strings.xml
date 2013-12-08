@@ -14,4 +14,15 @@
 	<string name="coins">Coins</string>
 	<string name="winning">Winning Temperature</string>
 	<string name="temp">Temperature</string>
+	<string name="temp_setting">Temperature:</string>
+	<string name="TempSummary">Check/Uncheck temperature sensor</string>
+	<string name="mag_setting">Magnetometer:</string>
+	<string name="kMagnetoSummary">Check/Uncheck temperature sensor</string>
+	<string name="menu_settings">Settings</string>
+	<string name="bid_winners">Bid Winners</string>
+	<string name="WinnerSummary">Winners</string>
+	<string name="Winner">Winning temperatures</string>
+	<string name="totCoins">Number</string>
+	
+	
 </resources>

@@ -1,93 +1,10 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:fillViewport="true" > <!-- IMPORTANT otherwise backgrnd img. will not fill the whole screen -->
-
-    <RelativeLayout
-        android:id="@+id/relative"
-        android:layout_width="match_parent" 
-        android:layout_height="match_parent">
-
-        <!-- Displaying Rooms -->
-
-        <TextView
-            android:id="@+id/tvDisplay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#0da1db"
-            android:textColor="#ffffff"
-            android:textSize="20px" />
-
-        <TextView
-            android:id="@+id/tvTemp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvDisplay"
-            android:text="Temperature:"
-            android:textSize="20dp" />
-
-        <EditText
-            android:id="@+id/etTemp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvTemp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="3dp"
-            android:hint="@string/Bid_Temp"
-            android:inputType="number"
-            android:maxLength="2"
-            android:textSize="20dp" />
-
-        <!-- Displaying number of coins -->
-
-        <TextView
-            android:id="@+id/tvCoins"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/etTemp"
-            android:text="Whats at stake? "
-            android:textSize="20dp" />
-
-        <EditText
-            android:id="@+id/etCoins"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvCoins"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="3dp"
-            android:hint="@string/coins"
-            android:inputType="number"
-            android:maxLength="3"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/tvWinTemp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/etCoins"
-            android:text="Current winner"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/etWinTempVal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tvWinTemp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="3dp"
-            android:inputType="number"
-            android:textSize="20dp" />
-
-        <Button
-            android:id="@+id/buttonBid"
-            style="@style/button_text"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/etWinTempVal"
-            android:layout_marginTop="22dp"
-            android:background="@drawable/red_button"
-            android:text="Bid" />
-    </RelativeLayout>
-
-</ScrollView>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+ 
+    <TextView
+        android:id="@+id/textUserSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
