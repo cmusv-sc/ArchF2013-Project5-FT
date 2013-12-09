@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream:src/edu/cmu/sv/sensebid/CalArrayAdapter.java
-package edu.cmu.sv.sensebid;
-=======
 /**
 Copyright (c) 2013 Carnegie Mellon University Silicon Valley.
 All rights reserved.
@@ -17,7 +14,6 @@ Please contact http://www.cmu.edu/silicon-valley/ if you have any
 questions.
 */
 package main.java.edu.cmu.sv.sdsp.senseAdapters;
->>>>>>> Stashed changes:src/main/java/edu/cmu/sv/sdsp/senseAdapters/CalArrayAdapter.java
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,22 +23,22 @@ import android.widget.ArrayAdapter;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class CalArrayAdapter.
+ * The Class CalUserAdapter.
  */
-public class CalArrayAdapter extends ArrayAdapter<Reservation>{
+public class CalUserAdapter extends ArrayAdapter<String>{
 
 	/** The m id map. */
-	HashMap<Reservation, Integer> mIdMap = new HashMap<Reservation, Integer>();
+	HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();
 
 	/**
-	 * Instantiates a new cal array adapter.
+	 * Instantiates a new cal user adapter.
 	 *
 	 * @param context the context
 	 * @param textViewResourceId the text view resource id
 	 * @param objects the objects
 	 */
-	public CalArrayAdapter(Context context, int textViewResourceId,
-			ArrayList<Reservation> objects) {
+	public CalUserAdapter(Context context, int textViewResourceId,
+			ArrayList<String> objects) {
 		super(context, textViewResourceId, objects);
 
 		for (int i = 0; i < objects.size(); ++i) {
@@ -57,7 +53,7 @@ public class CalArrayAdapter extends ArrayAdapter<Reservation>{
 	 */
 	@Override
 	public long getItemId(int position) {
-		Reservation item = getItem(position);
+		String item = getItem(position);
 
 		return mIdMap.get(item);
 	}

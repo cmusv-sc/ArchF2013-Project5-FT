@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream:src/edu/cmu/sv/sensebid/BidTemperatureController.java
-package edu.cmu.sv.sensebid;
-=======
 /**
 Copyright (c) 2013 Carnegie Mellon University Silicon Valley.
 All rights reserved.
@@ -17,7 +14,6 @@ Please contact http://www.cmu.edu/silicon-valley/ if you have any
 questions.
 */
 package main.java.edu.cmu.sv.sdsp.senseControllers;
->>>>>>> Stashed changes:src/main/java/edu/cmu/sv/sdsp/senseControllers/BidTemperatureController.java
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,51 +23,35 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
-<<<<<<< Updated upstream:src/edu/cmu/sv/sensebid/BidTemperatureController.java
-=======
-
-import main.java.edu.cmu.sv.sdsp.senseBid.GetBidResult;
 
 import android.content.Context;
->>>>>>> Stashed changes:src/main/java/edu/cmu/sv/sdsp/senseControllers/BidTemperatureController.java
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 
-<<<<<<< Updated upstream:src/edu/cmu/sv/sensebid/BidTemperatureController.java
-public class BidTemperatureController extends
-		AsyncTask<String, String, String> {
-
-	private static final String URL = "http://10.0.22.99:8080/sensor";
-	//private static final String URL = "http://10.0.22.99:8080/sensor";
-
-=======
 
 /**
- * The Class BidTemperatureController.
- * Send a RESTful post to the server with the temperature preference of the User.
- * Format : {"bidTemperature":{"user_id":"355031041120219","room_no":"Rm 129A","start_time":"1386630000000",
- * "end_time":"1386633600000","temperature_f":"22","bid_amount":"22","timestamp":1386543121089}}
- * 
- * These values are used to determine the winning temperature and is chosen to control nest
+ * The Class GetCreditController.
+ * Sends a RESTful POST to server with user fields e.g. { "UserCredit" :    {  "user_id" : "355031041120219" } }
+ * to the server and retrieves the credits for each user.
  */
-public class BidTemperatureController extends AsyncTask<String, String, String> {
+public class GetCreditController extends AsyncTask<String, String, String> {
 
 	/** The ctx. */
 	public Context ctx;
 
 	/**
-	 * Instantiates a new bid temperature controller.
+	 * Instantiates a new gets the credit controller.
 	 *
 	 * @param context the context
 	 */
-	public BidTemperatureController(Context context) {
+	public GetCreditController(Context context) {
 		this.ctx = context;
 	}
 
 	 /** The Constant URL. */
- 	private static final String URL = "http://cmu-app-server.herokuapp.com/sensor/smartSense/bid";
+ 	private static final String URL = "http://cmu-app-server.herokuapp.com/sensor/credit/getUserCredit";
 	//private static final String URL = "http://192.168.3.107:8080/sensor/smartSense/bid";
->>>>>>> Stashed changes:src/main/java/edu/cmu/sv/sdsp/senseControllers/BidTemperatureController.java
 
 	/* (non-Javadoc)
 	 * @see android.os.AsyncTask#doInBackground(Params[])
@@ -141,15 +121,12 @@ public class BidTemperatureController extends AsyncTask<String, String, String> 
 			try {
 				rd.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				// TODO Auto-geneTorated catch block
 				e.printStackTrace();
 			}
 		}
 
 		conn.disconnect();
-<<<<<<< Updated upstream:src/edu/cmu/sv/sensebid/BidTemperatureController.java
-		return sb.toString();
-=======
 		String str = sb.toString();
 
 		return str;
@@ -165,10 +142,9 @@ public class BidTemperatureController extends AsyncTask<String, String, String> 
 //		.execute();
 	     
 		Log.d("test_2", result);
-		Toast.makeText(this.ctx, result, Toast.LENGTH_LONG).show();
+//		Toast.makeText(this.ctx, result, Toast.LENGTH_LONG).show();
 		
 		
->>>>>>> Stashed changes:src/main/java/edu/cmu/sv/sdsp/senseControllers/BidTemperatureController.java
 	}
 
 }
