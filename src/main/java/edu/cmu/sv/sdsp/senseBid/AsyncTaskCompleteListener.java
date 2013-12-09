@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream:src/edu/cmu/sv/sensebid/AsyncTaskCompleteListener.java
-package edu.cmu.sv.sensebid;
-=======
 /**
 Copyright (c) 2013 Carnegie Mellon University Silicon Valley.
 All rights reserved.
@@ -17,16 +14,9 @@ Please contact http://www.cmu.edu/silicon-valley/ if you have any
 questions.
 */
 package main.java.edu.cmu.sv.sdsp.senseBid;
->>>>>>> Stashed changes:src/main/java/edu/cmu/sv/sdsp/senseBid/AsyncTaskCompleteListener.java
 
 // TODO: Auto-generated Javadoc
 //http://www.jameselsey.co.uk/blogs/techblog/extracting-out-your-asynctasks-into-separate-classes-makes-your-code-cleaner/
-<<<<<<< Updated upstream:src/edu/cmu/sv/sensebid/AsyncTaskCompleteListener.java
-	
-public interface AsyncTaskCompleteListener <T>{
-	void onTaskCompleted(T result);
-}
-=======
 
 /**
  * The listener interface for receiving asyncTaskComplete events.
@@ -49,4 +39,3 @@ public interface AsyncTaskCompleteListener <T>{
        */
       void onTaskCompleted(T result);
 }
->>>>>>> Stashed changes:src/main/java/edu/cmu/sv/sdsp/senseBid/AsyncTaskCompleteListener.java

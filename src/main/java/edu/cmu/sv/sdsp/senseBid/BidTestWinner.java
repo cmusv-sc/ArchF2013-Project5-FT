@@ -15,9 +15,9 @@ questions.
 */
 package main.java.edu.cmu.sv.sdsp.senseBid;
 
-import edu.cmu.sv.sensebid.R;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import edu.cmu.sv.sensebid.R;
 
 // TODO: Auto-generated Javadoc
 /**

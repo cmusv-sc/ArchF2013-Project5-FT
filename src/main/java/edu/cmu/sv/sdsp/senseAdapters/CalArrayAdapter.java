@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream:src/edu/cmu/sv/sensebid/CalArrayAdapter.java
-package edu.cmu.sv.sensebid;
-=======
 /**
 Copyright (c) 2013 Carnegie Mellon University Silicon Valley.
 All rights reserved.
@@ -17,11 +14,11 @@ Please contact http://www.cmu.edu/silicon-valley/ if you have any
 questions.
 */
 package main.java.edu.cmu.sv.sdsp.senseAdapters;
->>>>>>> Stashed changes:src/main/java/edu/cmu/sv/sdsp/senseAdapters/CalArrayAdapter.java
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import main.java.edu.cmu.sv.sdsp.senseBid.Reservation;
 import android.content.Context;
 import android.widget.ArrayAdapter;
 

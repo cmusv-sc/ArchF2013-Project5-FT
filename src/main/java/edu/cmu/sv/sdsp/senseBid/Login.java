@@ -47,7 +47,7 @@ public class Login extends Activity {
 		User userProvider = new User(this);
 
 		final ArrayList<String> accountList = User
-				.getEmail();
+				.getEmail(getBaseContext());
 		
 		
 		final CalUserAdapter adapter = new CalUserAdapter(this,

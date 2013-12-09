@@ -14,20 +14,21 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
-public class GetCreditController extends AsyncTask<String, String, String> {
-
-	/** The ctx. */
+public class BidTemperatureController extends
+		AsyncTask<String, String, String> {
+	
 	public Context ctx;
-
-	public GetCreditController(Context context) {
-
+	
+	public BidTemperatureController(Context context) {
 		this.ctx = context;
 	}
 
-	private static final String URL = "http://cmu-app-server.herokuapp.com/sensor/credit/getUserCredit";
+	private static final String URL = "http://10.0.9.102:8080/sensor";
+	//private static final String URL = "http://10.0.22.99:8080/sensor";
+
 
 	@Override
-	protected String doInBackground(String... arguments) {
+	protected String doInBackground(String... arguments)  {
 
 		String urlStr = URL;
 		String jsonString = arguments[0];
@@ -35,7 +36,7 @@ public class GetCreditController extends AsyncTask<String, String, String> {
 		HttpURLConnection conn = null;
 		OutputStream out = null;
 		Writer writer = null;
-
+		
 		try {
 			url = new URL(urlStr);
 			conn = (HttpURLConnection) url.openConnection();
@@ -45,26 +46,25 @@ public class GetCreditController extends AsyncTask<String, String, String> {
 			conn.setDoOutput(true);
 			out = conn.getOutputStream();
 			writer = new OutputStreamWriter(out, "UTF-8");
-			// String data = (new Gson()).toJson(jsonString);
+			//String data = (new Gson()).toJson(jsonString); 
 			writer.write(jsonString);
-		} catch (Exception e) {
+		}catch(Exception e)
+		{
 			Log.e("Test", "Exception" + e.getMessage());
 		}
-
+		
 		finally {
 			try {
 				writer.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				Log.e("Test", "Exception" + e.getMessage());
 			}
 			try {
 				out.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				Log.e("Test", "Exception" + e.getMessage());
 			}
 		}
 
@@ -75,7 +75,6 @@ public class GetCreditController extends AsyncTask<String, String, String> {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			Log.e("Test", "Exception" + e.getMessage());
 		}
 		StringBuilder sb = null;
 		BufferedReader rd = null;
@@ -90,35 +89,27 @@ public class GetCreditController extends AsyncTask<String, String, String> {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			Log.e("Test", "Exception" + e.getMessage());
 		} finally {
 			try {
 				rd.close();
 			} catch (IOException e) {
 				// TODO Auto-geneTorated catch block
 				e.printStackTrace();
-				Log.e("Test", "Exception" + e.getMessage());
 			}
 		}
 
 		conn.disconnect();
 		String str = sb.toString();
-
+		
 		return str;
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
-	 */
-	@Override
-	protected void onPostExecute(String result) {
-
-		Log.d("test_2", result);
-
-		Toast.makeText(this.ctx, result, Toast.LENGTH_LONG).show();
-
+	
+	protected void onPostExecute(String result)
+	{
+		
+		Toast.makeText(this.ctx, result , Toast.LENGTH_LONG).show();
 	}
+
+
 
 }

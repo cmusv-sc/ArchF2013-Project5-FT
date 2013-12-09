@@ -39,22 +39,9 @@ public class User {
 		User.accountManager = accountManager;
 	}
 
-	// private String firstName;
-	// private String lastName;
-	// private String status;
-	// private String emailId;
 
-	// @Override
-	// public final void onCreate(Bundle savedInstanceState) {
-	// super.onCreate(savedInstanceState);
-	//
-	// Log.d("test_2", savedInstanceState.toString());
-	//
-	// }
 
-<<<<<<< Updated upstream
-	public static ArrayList<String> getEmail() {
-=======
+
 	/**
 	 * Gets the email.
 	 *
@@ -62,7 +49,7 @@ public class User {
 	 * @return the email
 	 */
 	static ArrayList<String> getEmail(Context context) {
->>>>>>> Stashed changes
+
 		ArrayList<String> AccountList = new ArrayList<String>();
 		String token = null;
 		final ArrayList<String> gUsernameList = new ArrayList<String>(); 

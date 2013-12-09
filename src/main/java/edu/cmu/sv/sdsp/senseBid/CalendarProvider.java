@@ -14,13 +14,13 @@ Please contact http://www.cmu.edu/silicon-valley/ if you have any
 questions.
 */
 package main.java.edu.cmu.sv.sdsp.senseBid;
-import java.util.Date;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import android.os.AsyncTask;

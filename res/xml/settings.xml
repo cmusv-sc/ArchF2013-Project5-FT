@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <CheckBoxPreference
+        android:key="kTemp"
+        android:title="@string/temp_setting"
+        android:summary="@string/TempSummary"																																																																																																					
+        android:defaultValue="true" />
+    
+        <CheckBoxPreference
+        android:key="kMagneto"
+        android:title="@string/mag_setting"
+        android:summary="@string/kMagnetoSummary"																																																																																																					
+        android:defaultValue="true" />
+   
+</PreferenceScreen>

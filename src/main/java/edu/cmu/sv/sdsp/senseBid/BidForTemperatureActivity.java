@@ -15,11 +15,8 @@ questions.
 */
 package main.java.edu.cmu.sv.sdsp.senseBid;
 
-import java.io.IOException;
-
 import main.java.edu.cmu.sv.sdsp.senseControllers.BidTemperatureController;
 import main.java.edu.cmu.sv.sdsp.senseControllers.GetCreditController;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

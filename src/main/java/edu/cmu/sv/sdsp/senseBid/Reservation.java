@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream:src/edu/cmu/sv/sensebid/Reservation.java
-package edu.cmu.sv.sensebid;
-=======
 /**
 Copyright (c) 2013 Carnegie Mellon University Silicon Valley.
 All rights reserved.
@@ -17,23 +14,16 @@ Please contact http://www.cmu.edu/silicon-valley/ if you have any
 questions.
 */
 package main.java.edu.cmu.sv.sdsp.senseBid;
->>>>>>> Stashed changes:src/main/java/edu/cmu/sv/sdsp/senseBid/Reservation.java
 
 import java.io.Serializable;
 import java.util.Date;
 
-<<<<<<< Updated upstream:src/edu/cmu/sv/sensebid/Reservation.java
-import android.os.Parcel;
-import android.os.Parcelable;
-
-=======
 // TODO: Auto-generated Javadoc
 /**
  * The Class Reservation.
  * Provides with setter and getter methods for all the calendar parameters like
  * description, location, start and end dates.
  */
->>>>>>> Stashed changes:src/main/java/edu/cmu/sv/sdsp/senseBid/Reservation.java
 public class Reservation implements Serializable{
 	
 	/** The description. */
