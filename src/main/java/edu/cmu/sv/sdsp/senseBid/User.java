@@ -29,12 +29,23 @@ import android.util.Log;
  */
 public class User {
 	
+	/** The account manager. */
 	private static AccountManager accountManager;
 	
+	/**
+	 * Instantiates a new user.
+	 *
+	 * @param context the context
+	 */
 	public User(Context context){
 		User.accountManager = AccountManager.get(context);
 	}
 	
+	/**
+	 * Sets the account manager.
+	 *
+	 * @param accountManager the new account manager
+	 */
 	public void setAccountManager(AccountManager accountManager){
 		User.accountManager = accountManager;
 	}

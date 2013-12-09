@@ -32,6 +32,7 @@ import com.google.gson.JsonObject;
 import edu.cmu.sv.sensebid.R;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class BidForTemperatureActivity.
  * This is the main screen which provides the user with inputs of temperature values and bid for a particular event on 

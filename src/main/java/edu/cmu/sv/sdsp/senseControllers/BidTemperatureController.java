@@ -1,3 +1,18 @@
+/**
+Copyright (c) 2013 Carnegie Mellon University Silicon Valley.
+All rights reserved.
+
+This program and the accompanying materials are made available
+under the terms of dual licensing(GPL V2 for Research/Education
+purposes). GNU Public License v2.0 which accompanies this distribution
+is available at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+Please contact http://www.cmu.edu/silicon-valley/ if you have any
+questions.
+*/
 package main.java.edu.cmu.sv.sdsp.senseControllers;
 
 import java.io.BufferedReader;
@@ -14,19 +29,33 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class BidTemperatureController.
+ */
 public class BidTemperatureController extends
 		AsyncTask<String, String, String> {
 	
+	/** The ctx. */
 	public Context ctx;
 	
+	/**
+	 * Instantiates a new bid temperature controller.
+	 *
+	 * @param context the context
+	 */
 	public BidTemperatureController(Context context) {
 		this.ctx = context;
 	}
 
+	/** The Constant URL. */
 	private static final String URL = "http://10.0.9.102:8080/sensor";
 	//private static final String URL = "http://10.0.22.99:8080/sensor";
 
 
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#doInBackground(Params[])
+	 */
 	@Override
 	protected String doInBackground(String... arguments)  {
 
@@ -104,6 +133,9 @@ public class BidTemperatureController extends
 		return str;
 	}
 	
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+	 */
 	protected void onPostExecute(String result)
 	{
 		

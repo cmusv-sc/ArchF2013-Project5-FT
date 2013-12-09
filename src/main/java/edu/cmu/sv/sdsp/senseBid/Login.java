@@ -29,6 +29,7 @@ import android.widget.Toast;
 import edu.cmu.sv.sensebid.R;
 
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class Login.
  * Gets a ArrayList from User.class with the accounts associated to the mobile device in use and display it for the user to chose.
