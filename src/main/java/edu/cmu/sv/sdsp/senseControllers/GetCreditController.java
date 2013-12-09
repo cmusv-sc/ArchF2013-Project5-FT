@@ -1,3 +1,18 @@
+/**
+Copyright (c) 2013 Carnegie Mellon University Silicon Valley.
+All rights reserved.
+
+This program and the accompanying materials are made available
+under the terms of dual licensing(GPL V2 for Research/Education
+purposes). GNU Public License v2.0 which accompanies this distribution
+is available at http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+Please contact http://www.cmu.edu/silicon-valley/ if you have any
+questions.
+*/
 package main.java.edu.cmu.sv.sdsp.senseControllers;
 
 import java.io.BufferedReader;
@@ -9,23 +24,41 @@ import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import android.content.Context;
+import main.java.edu.cmu.sv.sdsp.senseBid.ValueProvider;
+import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GetCreditController.
+ */
 public class GetCreditController extends AsyncTask<String, String, String> {
 
 	/** The ctx. */
-	public Context ctx;
+	public Activity ctx;
+	private ValueProvider callback;
+	
 
-	public GetCreditController(Context context) {
+	/**
+	 * Instantiates a new gets the credit controller.
+	 *
+	 * @param context the context
+	 */
+	public GetCreditController(Activity context) {
 
 		this.ctx = context;
+		this.callback = (ValueProvider) context;
 	}
 
+	/** The Constant URL. */
 	private static final String URL = "http://cmu-app-server.herokuapp.com/sensor/credit/getUserCredit";
+	//private static final String URL = "http://10.0.2.2:8080/sensor/credit/getUserCredit";
 
+	/* (non-Javadoc)
+	 * @see android.os.AsyncTask#doInBackground(Params[])
+	 */
 	@Override
 	protected String doInBackground(String... arguments) {
 
@@ -114,10 +147,16 @@ public class GetCreditController extends AsyncTask<String, String, String> {
 	 */
 	@Override
 	protected void onPostExecute(String result) {
+		String str = result.substring(25);
+		str = new StringBuffer(str).reverse().substring(2).toString();  
+		str = new StringBuffer(str).reverse().toString();
+		Log.d("test_2", str);
+		this.callback.onCreditHist(str);
+		
+		//ValueProvider getCredit = new ValueProvider();
+		//getCredit.setCredit(str);
 
-		Log.d("test_2", result);
-
-		Toast.makeText(this.ctx, result, Toast.LENGTH_LONG).show();
+		Toast.makeText(this.ctx, str + " Remaining", Toast.LENGTH_LONG).show();
 
 	}
 

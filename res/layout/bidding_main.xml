@@ -64,7 +64,7 @@
                 android:id="@+id/tvCoins"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Remaining Credits? "
+                android:text="Remaining Credits "
                 android:textSize="16dip" />
 
             <EditText

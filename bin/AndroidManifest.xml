@@ -5,6 +5,16 @@
     android:versionName="1.0" >
 
     <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" >
+    </uses-permission>
+
         android:minSdkVersion="3"
         android:targetSdkVersion="18" 
         />
@@ -12,14 +22,19 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_CALENDAR"/> 
 
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        
         <activity
-            android:name="edu.cmu.sv.sensebid.SenseDroidMainActivity"
-            android:label="@string/app_name" >
+            android:name="main.java.edu.cmu.sv.sdsp.senseBid.SenseDroidMainActivity"
+            android:alwaysRetainTaskState="true"
+            android:label="@string/app_name"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,7 +42,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="edu.cmu.sv.sensebid.SensorDataPublisherService"
+            android:name="main.java.edu.cmu.sv.sdsp.senseBid.SensorDataPublisherService"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="edu.cmu.sv.sensebid.SensorDataPublisherService" />
@@ -35,7 +50,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="edu.cmu.sv.sensebid.BidForTemperatureActivity" >
+        <activity android:name="main.java.edu.cmu.sv.sdsp.senseBid.BidForTemperatureActivity" >
             <intent-filter>
                 <action android:name="edu.cmu.sv.sensebid.BidForTemperatureActivity" />
 
@@ -43,8 +58,7 @@
             </intent-filter>
             android:label="@string/app_name" >
         </activity>
-        
-        <activity android:name="edu.cmu.sv.sensebid.ShowCalendar" >
+        <activity android:name="main.java.edu.cmu.sv.sdsp.senseBid.ShowCalendar" >
             <intent-filter>
                 <action android:name="edu.cmu.sv.sensebid.ShowCalendar" />
 
@@ -52,7 +66,41 @@
             </intent-filter>
             android:label="@string/app_name" >
         </activity>
-        
+        <activity android:name="main.java.edu.cmu.sv.sdsp.senseBid.User" >
+            <intent-filter>
+                <action android:name="edu.cmu.sv.sensebid.User" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            android:label="@string/app_name" >
+        </activity>
+        <activity android:name="main.java.edu.cmu.sv.sdsp.senseBid.UserPreferencesActivity" />
+           
+        <activity android:name="main.java.edu.cmu.sv.sdsp.senseControllers.UserPreferencesController" >
+            <intent-filter>
+                <action android:name="edu.cmu.sv.sensebid.UserPreferencesController" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            android:label="@string/app_name" >
+        </activity>
+        <activity android:name="org.achartengine.GraphicalActivity" />
+        <activity android:name="main.java.edu.cmu.sv.sdsp.senseBid.BidTestWinner" >
+            <intent-filter>
+                <action android:name="edu.cmu.sv.sensebid.BidTestWinner" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            android:label="@string/app_name" >
+        </activity>
+        <activity android:name="main.java.edu.cmu.sv.sdsp.senseBid.Login" >
+            <intent-filter>
+                <action android:name="edu.cmu.sv.sensebid.Login" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

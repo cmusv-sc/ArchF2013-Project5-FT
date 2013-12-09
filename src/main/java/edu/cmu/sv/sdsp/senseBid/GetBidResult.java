@@ -33,7 +33,14 @@ import android.util.Log;
 public class GetBidResult extends AsyncTask<String, String, String> {
 
 	/* (non-Javadoc)
-	 * @see android.os.AsyncTask#doInBackground(Params[])
+	 * @see android.os.AsyncTask#doInBackground(ParaHTTP Status 405 - HTTP method GET is not supported by this URL
+
+type Status report
+
+message HTTP method GET is not supported by this URL
+
+description The specified HTTP method is not allowed for the requested resource.
+Apache Tomcat/7.0.34ms[])
 	 */
 	@Override
 	protected String doInBackground(String... arg0) {
