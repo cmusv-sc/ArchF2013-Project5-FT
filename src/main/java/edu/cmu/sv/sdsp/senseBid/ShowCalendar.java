@@ -44,7 +44,9 @@ public class ShowCalendar extends Activity implements AsyncTaskCompleteListener<
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_main_screen);
-
+                //The below statement should have values of username and password in the missing fields.
+		//As an e.g.
+		//new CalendarProvider(this, 'cmuUserName@gmail.com', 'cmuPassword').execute();
                 new CalendarProvider(this, "", "").execute();
         }
                 
