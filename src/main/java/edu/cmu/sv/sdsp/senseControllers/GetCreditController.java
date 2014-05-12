@@ -28,7 +28,6 @@ import main.java.edu.cmu.sv.sdsp.senseBid.ValueProvider;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -54,7 +53,7 @@ public class GetCreditController extends AsyncTask<String, String, String> {
 
 	/** The Constant URL. */
 	private static final String URL = "http://cmu-app-server.herokuapp.com/sensor/credit/getUserCredit";
-	//private static final String URL = "http://10.0.2.2:8080/sensor/credit/getUserCredit";
+	//private static final String URL = "http://localhost:8080/sensor/credit/getUserCredit";
 
 	/* (non-Javadoc)
 	 * @see android.os.AsyncTask#doInBackground(Params[])
@@ -81,7 +80,7 @@ public class GetCreditController extends AsyncTask<String, String, String> {
 			// String data = (new Gson()).toJson(jsonString);
 			writer.write(jsonString);
 		} catch (Exception e) {
-			Log.e("Test", "Exception" + e.getMessage());
+			Log.e("Test", "Exception 1" + e.getMessage());
 		}
 
 		finally {
@@ -90,26 +89,26 @@ public class GetCreditController extends AsyncTask<String, String, String> {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				Log.e("Test", "Exception" + e.getMessage());
+				Log.e("Test", "Exception 2" + e.getMessage());
 			}
 			try {
 				out.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				Log.e("Test", "Exception" + e.getMessage());
+				Log.e("Test", "Exception 3" + e.getMessage());
 			}
 		}
 
-		try {
-			if (conn.getResponseCode() != 200) {
-				throw new IOException(conn.getResponseMessage());
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			Log.e("Test", "Exception" + e.getMessage());
-		}
+//		try {
+//			if (conn.getResponseCode() != 200) {
+//				throw new IOException(conn.getResponseMessage());
+//			}
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			Log.e("Test", "Exception" + e.getMessage());
+//		}
 		StringBuilder sb = null;
 		BufferedReader rd = null;
 		try {
@@ -123,14 +122,14 @@ public class GetCreditController extends AsyncTask<String, String, String> {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			Log.e("Test", "Exception" + e.getMessage());
+			Log.e("Test", "Exception 4" + e.getMessage());
 		} finally {
 			try {
 				rd.close();
 			} catch (IOException e) {
 				// TODO Auto-geneTorated catch block
 				e.printStackTrace();
-				Log.e("Test", "Exception" + e.getMessage());
+				Log.e("Test", "Exception 5" + e.getMessage());
 			}
 		}
 
@@ -156,7 +155,7 @@ public class GetCreditController extends AsyncTask<String, String, String> {
 		//ValueProvider getCredit = new ValueProvider();
 		//getCredit.setCredit(str);
 
-		Toast.makeText(this.ctx, str + " Remaining", Toast.LENGTH_LONG).show();
+		//Toast.makeText(this.ctx, str + " Remaining", Toast.LENGTH_LONG).show();
 
 	}
 

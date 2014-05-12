@@ -76,7 +76,6 @@
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:inputType="number"
-                android:text="@string/totCoins"
                 android:textSize="16dip" />
         </TableRow>
 

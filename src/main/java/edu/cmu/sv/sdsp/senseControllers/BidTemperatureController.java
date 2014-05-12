@@ -54,12 +54,10 @@ public class BidTemperatureController extends
 
 	/** The Constant URL. */
 	private static final String URL = "http://cmu-app-server.herokuapp.com/sensor/smartSense/bid";
-	//private static final String URL = "http://10.0.2.2:8080/sensor/smartSense/bid";
+	//private static final String URL = "http://localhost:8080/sensor/smartSense/bid";
 
 
-	/* (non-Javadoc)
-	 * @see android.os.AsyncTask#doInBackground(Params[])
-	 */
+
 	@Override
 	protected String doInBackground(String... arguments)  {
 
@@ -101,14 +99,14 @@ public class BidTemperatureController extends
 			}
 		}
 
-		try {
-			if (conn.getResponseCode() != 200) {
-				throw new IOException(conn.getResponseMessage());
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			if (conn.getResponseCode() != 200) {
+//				throw new IOException(conn.getResponseMessage());
+//			}
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		StringBuilder sb = null;
 		BufferedReader rd = null;
 		try {
@@ -137,9 +135,8 @@ public class BidTemperatureController extends
 		return str;
 	}
 	
-	/* (non-Javadoc)
-	 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
-	 */
+
+	@Override
 	protected void onPostExecute(String result)
 	{
 //		ValueProvider prov = new ValueProvider();
@@ -148,7 +145,7 @@ public class BidTemperatureController extends
 		str = new StringBuffer(str).reverse().substring(2).toString();  
 		str = new StringBuffer(str).reverse().toString();
 		this.callback.onTask(str);
-		Toast.makeText(this.ctx, str + "Winning temp" , Toast.LENGTH_LONG).show();
+		Toast.makeText(this.ctx, "Current Winning temp: " + str, Toast.LENGTH_LONG).show();
 		Log.d("test_2", result);
 	}
 

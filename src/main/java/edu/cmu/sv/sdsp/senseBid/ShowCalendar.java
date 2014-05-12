@@ -45,7 +45,7 @@ public class ShowCalendar extends Activity implements AsyncTaskCompleteListener<
                 super.onCreate(savedInstanceState);
                 setContentView(R.layout.activity_main_screen);
 
-                new CalendarProvider(this, "anubhav.aeron@west.cmu.edu", "anubhav!1").execute();
+                new CalendarProvider(this, "", "").execute();
         }
                 
         /*

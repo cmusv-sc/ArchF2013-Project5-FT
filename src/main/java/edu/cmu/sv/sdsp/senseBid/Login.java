@@ -25,7 +25,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 import edu.cmu.sv.sensebid.R;
 
 
@@ -76,54 +75,54 @@ public class Login extends Activity {
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onStart()
 	 */
-	@Override
-	protected void onStart(){
-		super.onStart();
-		Toast.makeText(this,  "onStart", Toast.LENGTH_SHORT).show();
-	}
-	
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onResume()
-	 */
-	@Override
-	protected void onResume(){
-		super.onResume();
-		Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
-	}
-	
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onRestart()
-	 */
-	@Override
-	protected void onRestart(){
-		super.onRestart();
-		Toast.makeText(this, "onRestart", Toast.LENGTH_SHORT).show();
-	}
-	
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onPause()
-	 */
-	@Override
-	protected void onPause(){
-		super.onPause();
-		Toast.makeText(this, "onPause", Toast.LENGTH_SHORT).show();
-	}
-	
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onStop()
-	 */
-	@Override
-	protected void onStop(){
-		super.onStop();
-		Toast.makeText(this, "onStop", Toast.LENGTH_SHORT).show();
-	}
-	
-	/* (non-Javadoc)
-	 * @see android.app.Activity#onDestroy()
-	 */
-	@Override
-	protected void onDestroy(){
-		super.onDestroy();
-		Toast.makeText(this, "onDestroy", Toast.LENGTH_SHORT).show();
-	}
+//	@Override
+//	protected void onStart(){
+//		super.onStart();
+//		Toast.makeText(this,  "onStart", Toast.LENGTH_SHORT).show();
+//	}
+//	
+//	/* (non-Javadoc)
+//	 * @see android.app.Activity#onResume()
+//	 */
+//	@Override
+//	protected void onResume(){
+//		super.onResume();
+//		Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
+//	}
+//	
+//	/* (non-Javadoc)
+//	 * @see android.app.Activity#onRestart()
+//	 */
+//	@Override
+//	protected void onRestart(){
+//		super.onRestart();
+//		Toast.makeText(this, "onRestart", Toast.LENGTH_SHORT).show();
+//	}
+//	
+//	/* (non-Javadoc)
+//	 * @see android.app.Activity#onPause()
+//	 */
+//	@Override
+//	protected void onPause(){
+//		super.onPause();
+//		Toast.makeText(this, "onPause", Toast.LENGTH_SHORT).show();
+//	}
+//	
+//	/* (non-Javadoc)
+//	 * @see android.app.Activity#onStop()
+//	 */
+//	@Override
+//	protected void onStop(){
+//		super.onStop();
+//		Toast.makeText(this, "onStop", Toast.LENGTH_SHORT).show();
+//	}
+//	
+//	/* (non-Javadoc)
+//	 * @see android.app.Activity#onDestroy()
+//	 */
+//	@Override
+//	protected void onDestroy(){
+//		super.onDestroy();
+//		Toast.makeText(this, "onDestroy", Toast.LENGTH_SHORT).show();
+//	}
 }

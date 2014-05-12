@@ -108,7 +108,7 @@ public class BidForTemperatureActivity extends Activity implements ValueProvider
 
 	}
 
-	// This is where speech to text stops
+
 	/**
 	 * Send data.
 	 * 
@@ -121,7 +121,7 @@ public class BidForTemperatureActivity extends Activity implements ValueProvider
 		JsonObject bidDataBody = new JsonObject();
 		TelephonyManager TelephonyMgr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
 		String m_deviceId = TelephonyMgr.getDeviceId();
-		bidData.addProperty("user_id", m_deviceId);
+		bidData.addProperty("user_id", "user4");
 		bidData.addProperty("room_no", obj.getLocation());
 		bidData.addProperty("start_time",
 				String.valueOf(obj.getStartDate().getTime()));
@@ -178,7 +178,7 @@ public class BidForTemperatureActivity extends Activity implements ValueProvider
 		//ValueProvider obj1 = new ValueProvider();
 		JsonObject bidPrevDataBody = new JsonObject();
 
-		bidPrevData.addProperty("user_id", m_deviceId);
+		bidPrevData.addProperty("user_id", "user4");
 		bidPrevData.addProperty("room_no", obj.getLocation());
 		bidPrevData.addProperty("start_time",
 				String.valueOf(obj.getStartDate().getTime()));
@@ -193,12 +193,12 @@ public class BidForTemperatureActivity extends Activity implements ValueProvider
 		JsonObject creditData = new JsonObject();
 		JsonObject creditDataBody = new JsonObject();
 		
-		creditData.addProperty("user_id", "user2");
+		creditData.addProperty("user_id", "user4");
 		creditDataBody.add("UserCredit", creditData);
 		
 		//Gets winning temperature before with bidding is done
-//		new GetWinnerHistory(this).execute(bidPrevDataBody
-//				.toString());
+		new GetWinnerHistory(this).execute(bidPrevDataBody
+				.toString());
 //
 //		
 		//Gets user credit before the bid is done.
