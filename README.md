@@ -9,7 +9,7 @@ Future Work
 ===========
 
 The username and passowrd of which the user wants the calendar details, are to be provided in the src/main/java/edu/cmu/sv/sdsp/senseBid/ShowCalendar.java
-on line 50 where the CalendarProvider instance is being claused.
+on line 50 where the CalendarProvider instance is being called.
 
 
 
