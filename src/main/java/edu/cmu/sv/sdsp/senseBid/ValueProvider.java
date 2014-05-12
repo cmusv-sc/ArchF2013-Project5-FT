@@ -1,3 +1,6 @@
+/*
+ *The software is under CMU SV License
+ * */
 package main.java.edu.cmu.sv.sdsp.senseBid;
 
 public interface ValueProvider  {
